@@ -1,6 +1,6 @@
 open Core.Std
 
 
-
 let () =
-  print_string "Hello Fake-Typing World!"
+  let arg_string = String.concat (Array.to_list Sys.argv) ~sep:" " in
+  print_string arg_string
