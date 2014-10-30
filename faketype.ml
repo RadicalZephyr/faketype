@@ -6,5 +6,4 @@ let () =
   | [] -> assert false
   | _ :: args ->
      let arg_string = String.concat args ~sep:" " in
-     print_string arg_string;
-     print_newline ()
+     print_string arg_string
