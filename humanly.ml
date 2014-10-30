@@ -13,9 +13,10 @@ let get_average_time_for_typist typist =
 
 let get_next_span typist =
   let avg_time = get_average_time_for_typist typist in
-  let half_avg = avg_time /. 2. in
-  let modulation = (Random.float half_avg) -. half_avg in
-  Time.Span.of_float (avg_time +. modulation)
+  let mod_range = avg_time *. 1.5 in
+  let mod_offset = avg_time /. 1. in
+  let modulation = (Random.float mod_range) -. mod_offset in
+  Time.Span.of_float (Float.abs (avg_time +. modulation))
 
 let iter ?(typist=Good) ~f str =
   let rec iter i last =
