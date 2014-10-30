@@ -1,5 +1,17 @@
 open Core.Std
 
+type typist =
+  | Best | Good | Average | Poor | Worst
+
+
+let get_average_time_for_typist t =
+  match t with
+  | Best    -> 0.08
+  | Good    -> 0.12
+  | Average -> 0.2
+  | Poor    -> 0.28
+  | Worst   -> 1.2
+
 let get_next_span () =
   Time.Span.of_float 0.1
 
