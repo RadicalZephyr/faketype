@@ -3,7 +3,6 @@ open Core.Std
 type typist =
   | Best | Good | Average | Poor | Worst
 
-
 let get_average_time_for_typist typist =
   match typist with
   | Best    -> 0.08
@@ -13,7 +12,10 @@ let get_average_time_for_typist typist =
   | Worst   -> 1.2
 
 let get_next_span typist =
-  Time.Span.of_float (get_average_time_for_typist typist)
+  let avg_time = get_average_time_for_typist typist in
+  let half_avg = avg_time /. 2. in
+  let modulation = (Random.float half_avg) -. half_avg in
+  Time.Span.of_float (avg_time +. modulation)
 
 let iter ?(typist=Good) ~f str =
   let rec iter i last =
